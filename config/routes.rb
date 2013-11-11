@@ -10,6 +10,7 @@ Lobsters::Application.routes.draw do
   get "/newest(.format)" => "home#newest"
   get "/newest/page/:page" => "home#newest"
   get "/newest/:user" => "home#newest_by_user"
+  get "/newest/:user(.format)" => "home#newest_by_user"
   get "/newest/:user/page/:page" => "home#newest_by_user"
 
   get "/threads" => "comments#threads"
@@ -59,6 +60,7 @@ Lobsters::Application.routes.draw do
     post "undelete"
   end
   get "/comments/page/:page" => "comments#index"
+  get "/comments/page/:page(.format)" => "comments#index"
   post "/comments/post_to/:story_id" => "comments#create"
   post "/comments/preview_to/:story_id" => "comments#preview_new"
 
@@ -69,10 +71,12 @@ Lobsters::Application.routes.draw do
 
   get "/s/:id/:title/comments/:comment_short_id" => "stories#show_comment"
   get "/s/:id/(:title)" => "stories#show"
+  get "/s/:id/(:title)(.format)" => "stories#show"
 
   get "/u" => "users#tree"
   get "/u/:id" => "users#show"
-
+  get "/u/:id(.format)" => "users#show"
+  
   get "/settings" => "settings#index"
   post "/settings" => "settings#update"
 

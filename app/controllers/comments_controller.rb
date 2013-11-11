@@ -206,6 +206,18 @@ class CommentsController < ApplicationController
       :limit => COMMENTS_PER_PAGE,
       :include => [ :user, :story ])
 
+    respond_to do |format|
+      format.html { render :action => "index" }
+      format.rss {
+        if @user && params[:token].present?
+          @title += " - Private feed for #{@user.username}"
+        end
+
+        render :action => "rss", :layout => false
+      }
+      format.json { render :json => @comments }
+    end
+
     if @user
       @votes = Vote.comment_votes_by_user_for_comment_ids_hash(@user.id,
         @comments.map{|c| c.id })

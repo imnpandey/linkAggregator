@@ -1,7 +1,27 @@
 class UsersController < ApplicationController
   def show
+
+    @rss_link ||= "<link rel=\"alternate\" type=\"application/rss+xml\" " <<
+      "title=\"RSS 2.0\" href=\"/comments.rss" <<
+      (@user ? "?token=#{@user.rss_token}" : "") << "\" />"
+
     @showing_user = User.find_by_username!(params[:id])
-    @title = "User #{@showing_user.username}"
+    @heading = @title = "User #{@showing_user.username}"
+
+ respond_to do |format|
+      format.html { render :action => "show" }
+      format.rss {
+        if @user && params[:token].present?
+          @title += " - Private feed for #{@user.username}"
+        end
+
+        render :action => "rss", :layout => false
+      }
+      format.json { render :json => @showing_user }
+    end
+
+
+
   end
 
   def tree

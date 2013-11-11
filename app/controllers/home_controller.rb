@@ -66,7 +66,18 @@ class HomeController < ApplicationController
     @newest = true
     @for_user = for_user.username
 
-    render :action => "index"
+    #render :action => "index"
+     respond_to do |format|
+      format.html { render :action => "index" }
+      format.rss {
+        if @user && params[:token].present?
+          @title += " - Private feed for #{@user.username}"
+        end
+
+        render :action => "rss", :layout => false
+      }
+      format.json { render :json => @stories }
+    end
   end
 
   def tagged
