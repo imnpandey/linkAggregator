@@ -83,5 +83,20 @@ in a `config/initializers/production.rb` or similar file:
 
           lobsters$ rails server
 
-Use /news.json
-and /newest.json
+####API Details
+
+* get "/news.json"
+
+* get "/newest.json"
+ 
+* get "/newest/:user.json"
+  
+* get "/s/:id/(:title).json"
+  
+* get "/comments/page/:page.json"
+   
+* get "/u/:id.json"
+
+* post "/apilogin" => "login#apilogin"
+  
+* post "/apilogout" => "login#apilogout"
