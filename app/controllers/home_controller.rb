@@ -28,6 +28,16 @@ class HomeController < ApplicationController
     end
   end
 
+  def apiindex
+    @stories = find_stories_for_user_and_tag_and_newest_and_by_user(@user,
+      nil, false, nil)
+
+    @heading = @title = ""
+    @cur_url = "/"
+
+     render :json => @stories
+  end
+
   def newest
     @stories = find_stories_for_user_and_tag_and_newest_and_by_user(@user,
       nil, true, nil)
@@ -52,6 +62,15 @@ class HomeController < ApplicationController
       }
       format.json { render :json => @stories }
     end
+  end
+
+  def apinewest
+    @stories = find_stories_for_user_and_tag_and_newest_and_by_user(@user,
+      nil, true, nil)
+
+    @newest = true
+
+      render :json => @stories    
   end
 
   def newest_by_user
@@ -79,6 +98,19 @@ class HomeController < ApplicationController
       format.json { render :json => @stories }
     end
   end
+
+  def apinewest_by_user
+    for_user = User.find_by_username!(params[:user])
+
+    @stories = find_stories_for_user_and_tag_and_newest_and_by_user(@user,
+      nil, false, for_user.id)
+    
+    @newest = true
+    @for_user = for_user.username
+
+    render :json => @stories
+    
+  end  
 
   def tagged
     @tag = Tag.find_by_tag!(params[:tag])

@@ -143,6 +143,26 @@ class StoriesController < ApplicationController
     end
   end
 
+
+  def apishow
+    @story = Story.find_by_short_id!(params[:id])
+
+    if @story.can_be_seen_by_user?(@user)
+      @title = @story.title
+    else
+      @title = "[Story removed]"
+    end
+
+    @short_url = @story.short_id_url
+
+    @comments = Comment.ordered_for_story_or_thread_for_user(@story.id, nil,
+      @user)
+
+      render :json => @story.as_json(:with_comments => @comments)
+
+  end
+
+
   def show_comment
     @story = Story.find_by_short_id!(params[:id])
 

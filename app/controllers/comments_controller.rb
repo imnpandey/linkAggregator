@@ -230,6 +230,43 @@ class CommentsController < ApplicationController
     end
   end
 
+
+def apicomments
+    @rss_link ||= "<link rel=\"alternate\" type=\"application/rss+xml\" " <<
+      "title=\"RSS 2.0\" href=\"/comments.rss" <<
+      (@user ? "?token=#{@user.rss_token}" : "") << "\" />"
+
+    @heading = @title = "Newest Comments"
+    @cur_url = "/comments"
+
+    @page = 1
+    if params[:page].to_i > 0
+      @page = params[:page].to_i
+    end
+
+    @comments = Comment.find(
+      :all,
+      :conditions => "is_deleted = 0 AND is_moderated = 0",
+      :order => "created_at DESC",
+      :offset => ((@page - 1) * COMMENTS_PER_PAGE),
+      :limit => COMMENTS_PER_PAGE,
+      :include => [ :user, :story ])
+  
+      render :json => @comments    
+
+    if @user
+      @votes = Vote.comment_votes_by_user_for_comment_ids_hash(@user.id,
+        @comments.map{|c| c.id })
+
+      @comments.each do |c|
+        if @votes[c.id]
+          c.current_vote = @votes[c.id]
+        end
+      end
+    end
+  end
+
+
   def threads
     if params[:user]
       @showing_user = User.find_by_username!(params[:user])

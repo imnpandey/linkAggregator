@@ -100,3 +100,21 @@ in a `config/initializers/production.rb` or similar file:
 * post "/apilogin" => "login#apilogin"
   
 * post "/apilogout" => "login#apilogout"
+
+####OR you can use REST structured api
+
+* get "/apinews" => "home#apiindex"
+
+* get "/apinewest" => "home#apinewest"
+ 
+* get "/apinewest/:user" => "home#apinewest_by_user"
+  
+* get "/apis/:id/(:title)" => "stories#apishow"
+  
+* get "/apicomments/(page/:page)" => "comments#apicomments"
+   
+* get "/apiuser/:id" => "users#apishow"
+
+* post "/apilogin" => "login#apilogin"
+  
+* post "/apilogout" => "login#apilogout"

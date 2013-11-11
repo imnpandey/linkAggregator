@@ -98,4 +98,21 @@ Lobsters::Application.routes.draw do
 
   get "/privacy" => "home#privacy"
   get "/about" => "home#about"
+
+ get "/apinews" => "home#apiindex"
+
+ get "/apinewest" => "home#apinewest"
+ 
+ get "/apinewest/:user" => "home#apinewest_by_user"
+  
+ get "/apis/:id/(:title)" => "stories#apishow"
+  
+ get "/apicomments/(page/:page)" => "comments#apicomments"
+   
+ get "/apiuser/:id" => "users#apishow"
+
+ post "/apilogin" => "login#apilogin"
+  
+ post "/apilogout" => "login#apilogout"
+
 end

@@ -19,9 +19,11 @@ class UsersController < ApplicationController
       }
       format.json { render :json => @showing_user }
     end
+  end
 
-
-
+  def apishow
+    @showing_user = User.find_by_username!(params[:id])    
+    render :json => @showing_user    
   end
 
   def tree
