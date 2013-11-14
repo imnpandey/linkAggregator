@@ -1,4 +1,4 @@
-Lobsters::Application.routes.draw do
+Broomble::Application.routes.draw do
   root :to => "home#index",
     :protocol => (Rails.env == "development" ? "http://localhost:3000" : "http://127.0.0.1:3000")
 

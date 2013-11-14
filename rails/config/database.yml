@@ -2,7 +2,7 @@ development:
     adapter: mysql2
     encoding: utf8mb4
     reconnect: false
-    database: lobsters_dev
+    database: Broomble_dev
     socket: /tmp/mysql.sock
     username: root
     password:

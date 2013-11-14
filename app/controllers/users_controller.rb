@@ -22,8 +22,13 @@ class UsersController < ApplicationController
   end
 
   def apishow
-    @showing_user = User.find_by_username!(params[:id])    
-    render :json => @showing_user    
+    @showing_user = User.find_by_username!(params[:id])   
+    
+      if params[:callback]
+        render json: {:user => @showing_user}.to_json, :callback => params[:callback]
+      else
+        render json: {:user => @showing_user}.to_json
+      end    
   end
 
   def tree

@@ -9,7 +9,7 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-module Lobsters
+module Broomble
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -73,7 +73,7 @@ class << Rails.application
   end
 
   def name
-    "Lobsters"
+    "Broomble"
   end
 
   # used as mailing list prefix and countinual prefix, cannot have spaces

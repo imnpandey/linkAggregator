@@ -111,7 +111,7 @@
       $("#story_url").focus();
 
       $("button.story-preview").unbind().live("click", function() {
-        Lobsters.previewStory($(this).parents("form").first());
+        Broomble.previewStory($(this).parents("form").first());
       });
 
       $("#story_url").unbind().live("blur", function() {

@@ -4,7 +4,7 @@
 
 "use strict";
 
-var _Lobsters = Class.extend({
+var _Broomble = Class.extend({
   curUser: null,
 
   storyDownvoteReasons: { <%= Vote::STORY_REASONS.map{|k,v|
@@ -13,29 +13,29 @@ var _Lobsters = Class.extend({
       "#{k.inspect}: #{v.inspect}" }.join(", ") %> },
 
   upvote: function(voterEl) {
-    Lobsters.vote("story", voterEl, 1);
+    Broomble.vote("story", voterEl, 1);
   },
   downvote: function(voterEl) {
-    Lobsters._showDownvoteWhyAt("story", voterEl, function(k) {
-      Lobsters.vote("story", voterEl, -1, k); });
+    Broomble._showDownvoteWhyAt("story", voterEl, function(k) {
+      Broomble.vote("story", voterEl, -1, k); });
   },
 
   upvoteComment: function(voterEl) {
-    Lobsters.vote("comment", voterEl, 1);
+    Broomble.vote("comment", voterEl, 1);
   },
   downvoteComment: function(voterEl) {
-    Lobsters._showDownvoteWhyAt("comment", voterEl, function(k) {
-      Lobsters.vote("comment", voterEl, -1, k); });
+    Broomble._showDownvoteWhyAt("comment", voterEl, function(k) {
+      Broomble.vote("comment", voterEl, -1, k); });
   },
 
   _showDownvoteWhyAt: function(thingType, voterEl, onChooseWhy) {
-    if (!Lobsters.curUser)
-      return Lobsters.bounceToLogin();
+    if (!Broomble.curUser)
+      return Broomble.bounceToLogin();
 
     var li = $(voterEl).parents("li").first();
     if (li.hasClass("downvoted")) {
       /* already upvoted, neutralize */
-      Lobsters.vote(thingType, voterEl, -1, null);
+      Broomble.vote(thingType, voterEl, -1, null);
       return;
     }
 
@@ -55,9 +55,9 @@ var _Lobsters = Class.extend({
 
     var reasons;
     if (thingType == "comment")
-      reasons = Lobsters.commentDownvoteReasons;
+      reasons = Broomble.commentDownvoteReasons;
     else
-      reasons = Lobsters.storyDownvoteReasons;
+      reasons = Broomble.storyDownvoteReasons;
 
     $.each(reasons, function(k, v) {
       var a = $("<a href=\"#\"" + (k == "" ? " class=\"cancelreason\"" : "") +
@@ -88,8 +88,8 @@ var _Lobsters = Class.extend({
   },
 
   vote: function(thingType, voterEl, point, reason) {
-    if (!Lobsters.curUser)
-      return Lobsters.bounceToLogin();
+    if (!Broomble.curUser)
+      return Broomble.bounceToLogin();
 
     var li = $(voterEl).parents("li").first();
     var scoreDiv = li.find("div.score").get(0);
@@ -133,7 +133,7 @@ var _Lobsters = Class.extend({
       li.find(".reason").html("");
     else if (action == "downvote" && thingType == "comment")
       li.find(".reason").html("(" +
-        Lobsters.commentDownvoteReasons[reason].toLowerCase() + ")");
+        Broomble.commentDownvoteReasons[reason].toLowerCase() + ")");
 
     $.post("/" + (thingType == "story" ? "stories" : thingType + "s") + "/" +
       $(voterEl).parents("li").first().attr("data-shortid") + "/" +
@@ -218,34 +218,34 @@ var _Lobsters = Class.extend({
   },
 });
 
-var Lobsters = new _Lobsters();
+var Broomble = new _Broomble();
 
 $(document).ready(function() {
   $("li.comment a.downvoter").click(function() {
-    Lobsters.downvoteComment(this);
+    Broomble.downvoteComment(this);
     return false;
   });
   $("li.comment a.upvoter").click(function() {
-    Lobsters.upvoteComment(this);
+    Broomble.upvoteComment(this);
     return false;
   });
 
   $("li.story a.downvoter").click(function() {
-    Lobsters.downvote(this);
+    Broomble.downvote(this);
     return false;
   });
   $("li.story a.upvoter").click(function() {
-    Lobsters.upvote(this);
+    Broomble.upvote(this);
     return false;
   });
 
   $("li.story a.mod_story_link").click(function() {
-    return Lobsters.moderateStory(this);
+    return Broomble.moderateStory(this);
   }),
 
   $("a.comment_replier").on("click", function() {
-    if (!Lobsters.curUser) {
-      Lobsters.bounceToLogin();
+    if (!Broomble.curUser) {
+      Broomble.bounceToLogin();
       return false;
     }
 
@@ -315,10 +315,10 @@ $(document).ready(function() {
   });
 
   $("button.comment-post").on("click", function() {
-    Lobsters.postComment($(this).parents("form").first());
+    Broomble.postComment($(this).parents("form").first());
   });
 
   $("button.comment-preview").on("click", function() {
-    Lobsters.previewComment($(this).parents("form").first());
+    Broomble.previewComment($(this).parents("form").first());
   });
 });

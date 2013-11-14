@@ -55,7 +55,7 @@ div#header span.headerlinks a[href="/"] {
 	font-size: 0px;
 }
 div#header span.headerlinks a[href="/"]:after {
-	content: "Lobsters";
+	content: "Broomble";
 	text-transform: none;
 	font-size: 10pt;
 	padding-right: 10px;

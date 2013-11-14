@@ -1,8 +1,28 @@
+production:
+ adapter: mysql2
+ encoding: utf8
+ reconnect: false
+ database: broomble_dev
+ pool: 5
+ socket: /var/run/mysqld/mysqld.sock
+ username: root
+ password:
+ host     : 127.0.0.1
+
+proxied-appfog:
+ adapter: mysql2
+ username : uuSC6S4CNkdcR
+ password : p2ZE6SPvbJrWO
+ database : d15830b07d0af41328b653a813ddf733d
+ infra    : ap-aws
+ port: 10000
+ host: 127.0.0.1
+
 development:
  adapter: mysql2
  encoding: utf8
  reconnect: false
- database: lobsters_dev
+ database: broomble_dev
  pool: 5
  socket: /var/run/mysqld/mysqld.sock
  username: root

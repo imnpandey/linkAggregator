@@ -251,8 +251,13 @@ def apicomments
       :offset => ((@page - 1) * COMMENTS_PER_PAGE),
       :limit => COMMENTS_PER_PAGE,
       :include => [ :user, :story ])
-  
-      render :json => @comments    
+
+      if params[:callback]
+        render json: {:comments => @comments}.to_json, :callback => params[:callback]
+      else
+        render json: {:comments => @comments}.to_json
+      end  
+      
 
     if @user
       @votes = Vote.comment_votes_by_user_for_comment_ids_hash(@user.id,

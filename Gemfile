@@ -15,11 +15,6 @@ gem "dynamic_form"
 # use old version that doesn't have tinder bullshit
 gem "exception_notification", "2.6.1"
 
-group :production do
-  
-  gem 'unicorn'
-end
-
 # for asset compilation
 gem "uglifier"
 
@@ -36,6 +31,10 @@ gem "mail"
 group :test, :development do
   gem "rspec-rails", "~> 2.6"
   gem "machinist"
-  gem "sqlite3"
   gem "mysql2"
+end
+
+group :production do
+  gem 'mysql2'
+  gem 'unicorn'
 end

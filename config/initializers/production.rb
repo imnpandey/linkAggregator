@@ -1,6 +1,6 @@
 class << Rails.application
   def domain
-    "localhost:3000"
+    "projectbroomble.ap01.aws.af.cm"
   end
 
   def name

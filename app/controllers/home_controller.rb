@@ -35,7 +35,11 @@ class HomeController < ApplicationController
     @heading = @title = ""
     @cur_url = "/"
 
-     render :json => @stories
+      if params[:callback]
+        render json: {:stories => @stories}.to_json, :callback => params[:callback]
+      else
+        render json: {:stories => @stories}.to_json
+      end
   end
 
   def newest
@@ -70,7 +74,12 @@ class HomeController < ApplicationController
 
     @newest = true
 
-      render :json => @stories    
+      if params[:callback]
+        render json: {:stories => @stories}.to_json, :callback => params[:callback]
+      else
+        render json: {:stories => @stories}.to_json
+      end
+
   end
 
   def newest_by_user
@@ -108,7 +117,11 @@ class HomeController < ApplicationController
     @newest = true
     @for_user = for_user.username
 
-    render :json => @stories
+      if params[:callback]
+        render json: {:stories => @stories}.to_json, :callback => params[:callback]
+      else
+        render json: {:stories => @stories}.to_json
+      end
     
   end  
 

@@ -6,11 +6,11 @@
 #   defer_transports =
 #
 # postfix transports:
-#   example.com   lobsters:
+#   example.com   Broomble:
 #
 # postfix master.cf:
-#   lobsters  unix  -       n       n       -       2       pipe
-#    flags=Fqhu user=lobsters size=1024000 argv=/d/rails/lobsters/script/parse_inbound_mail ${recipient} ${sender}
+#   Broomble  unix  -       n       n       -       2       pipe
+#    flags=Fqhu user=Broomble size=1024000 argv=/d/rails/Broomble/script/parse_inbound_mail ${recipient} ${sender}
 
 ENV["RAILS_ENV"] ||= "production"
 

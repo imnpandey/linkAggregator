@@ -158,7 +158,11 @@ class StoriesController < ApplicationController
     @comments = Comment.ordered_for_story_or_thread_for_user(@story.id, nil,
       @user)
 
-      render :json => @story.as_json(:with_comments => @comments)
+    if params[:callback]
+      render json: {:stories => @story, :comments => @comments}.to_json, :callback => params[:callback]
+    else
+       render json: {:stories => @story, :comments => @comments}.to_json 
+    end      
 
   end
 
