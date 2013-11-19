@@ -1,6 +1,9 @@
 ActionMailer::Base.smtp_settings = {
-  :address => "127.0.0.1",
-  :port => 25,
+  :address => 'smtp.gmail.com',
+  :port => 587,
   :domain => Rails.application.domain,
-  :enable_starttls_auto => false,
+  :user_name => 'npicstore@gmail.com',
+  :password => '11niecNAVNEET11',
+  :authentication => 'plain',
+  :enable_starttls_auto => true
 }

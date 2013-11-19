@@ -69,7 +69,7 @@ end
 # config/initializers/production.rb
 class << Rails.application
   def domain
-    "lobste.rs"
+    "projectbroomble.ap01.aws.af.cm"
   end
 
   def name

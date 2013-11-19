@@ -8,6 +8,8 @@
 /.bundle
 
 # Ignore the default SQLite database.
+/db/*.sqlite3
+/db/sphinx
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
@@ -23,9 +25,9 @@ app/views/home/privacy.*
 app/views/home/about.*
 
 # files added in production
-#lib/tasks/deploy.rake
-#config/initializers/production.rb
-#config/database.yml
-#config/initializers/secret_token.rb
-#config/*.sphinx.conf
-#config/unicorn.conf.rb
+lib/tasks/deploy.rake
+config/initializers/production.rb
+config/database.yml
+config/initializers/secret_token.rb
+config/*.sphinx.conf
+config/unicorn.conf.rb

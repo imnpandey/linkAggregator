@@ -30,11 +30,10 @@
 </head>
 <body>
   <div id="wrapper">
-    <div id="header">
+    <aside id="header">
       <div id="headerleft">
-        <a id="l_holder" style="background-color: #<%= sprintf("%02x%02x%02x",
-        [ 255, (@traffic * 7).floor + 50.0 ].min, 0, 0) %>;" href="/"
-        title="<%= Rails.application.name %> (<%= @traffic.to_i %>)"></a>
+        <a id="l_holder"  href="/"
+        title="<%= Rails.application.name %> (<%= @traffic.to_i %>)">Broomble</a>
 
         <% links = {
           "/" => "Home",
@@ -45,8 +44,11 @@
         <% if @user %>
           <% links.merge!({ "/threads" => "Your Threads",
             "/stories/new" => "Submit Story" }) %>
+        
+         <a id="userlink" href="/settings" <%= @cur_url == "/settings" ?
+            raw("class=\"cur_url\"") : "" %>><img src="<%= @user.avatar_url %>" /><span><%= @user.username %>
+            (<%= @user.karma %>) </span></a>
         <% end %>
-
         <% links.merge!({ "/search" => "Search" }) %>
 
         <% if @cur_url.present? && !links.keys.include?(@cur_url) &&
@@ -78,10 +80,6 @@
               raw("class=\"cur_url\"") : "" %>>Messages</a>
           <% end %>
 
-          <a href="/settings" <%= @cur_url == "/settings" ?
-            raw("class=\"cur_url\"") : "" %>><%= @user.username %>
-            (<%= @user.karma %>)</a>
-
           <%= link_to "Logout", { :controller => "login", :action => "logout" },
             :data => { :confirm => "Are you sure you want to logout?" },
             :method => "post" %>
@@ -92,9 +90,14 @@
       </div>
 
       <div class="clear"></div>
-    </div>
+    </aside>
 
     <div id="inside">
+     <!-- <header class="header bg-white b-b" id="HEADER_1">
+  <p id="P_2">
+    Welcome to Broomble application
+  </p>
+</header> -->
       <% if flash[:error] %>
         <div class="flash-error"><%= flash[:error] %></div>
       <% elsif flash[:success] %>

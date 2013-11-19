@@ -15,6 +15,7 @@ class="story <%= story.vote == 1 ? "upvoted" : (story.vote == -1 ?
     <% end %>
   </div>
   <div class="details">
+<div class="imgs" ><img width="25" height="25" id="imageuser" src="<%= story.user.avatar_url %>" /></div>
     <span class="link">
       <% if story.can_be_seen_by_user?(@user) %>
         <a href="<%= story.url_or_comments_url %>"><%= story.title %></a>
@@ -35,6 +36,7 @@ class="story <%= story.vote == 1 ? "upvoted" : (story.vote == -1 ?
       </span>
       <span class="domain"><%= story.domain %></span>
     <% end %>
+    <span class="arrow top"></span>
     <div class="byline">
       <% if story.previewing %>
         by <a><%= story.user.username %></a>
