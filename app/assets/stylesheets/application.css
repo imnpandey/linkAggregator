@@ -214,6 +214,47 @@ div.field_with_errors input[type="email"],
 div.field_with_errors input[type="password"] {
 	border: 1px solid red;
 }
+input , textarea{
+display: inline-block;
+padding: 6px 12px;
+font-size: 14px;
+line-height: 1.428571429;
+color: #555;
+vertical-align: middle;
+background-color: #FFF;
+border: 1px solid #CCC;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.select2-container{
+line-height: 1.428571429;
+color: #555;
+vertical-align: middle;
+background-color: #FFF;
+border: 1px solid #CCC;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.select2-container-multi .select2-choices {
+border-color: transparent; }
+
+button , input[type="submit"] {
+color: #FFF !important;
+background-color: #37C4F0 !important;
+border-color: #24BEEF  !important;
+border: 0  !important;
+font-size:inherit !important;
+height :30px !important;
+border-radius: 4px  !important;
+}
 div.field_with_errors input:focus {
 	border-color: rgba(255,0,0,.8);
 }
@@ -235,7 +276,7 @@ input:disabled, button:disabled {
     min-height: 50px;
     outline: rgb(113, 113, 113) none 0px;
     padding: 0px 15px;
- 
+ position: fixed;
     width: 100%;
     z-index: 11111;
 }/*#HEADER_1*/
@@ -245,11 +286,12 @@ input:disabled, button:disabled {
     box-sizing: border-box;
     color: rgb(113, 113, 113);
     display: inline-block;
-    font: normal normal normal 13px/18px 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    height: 18px;
-    line-height: 18px;
-    margin: 15px 0px 10px;
-    outline: rgb(113, 113, 113) none 0px;
+   font-family: arial;
+height: 18px;
+line-height: 18px;
+margin: 15px 0px 10px;
+outline: #717171 none 0px;
+font-size: 25px;
    
 }/*#P_2*/
 
@@ -819,6 +861,7 @@ div#story_box div.markdown_help_toggler {
 
 div.comment_form_container, div.comment_reply {
 	max-width: 700px;
+	margin-left: 30px !important;
 }
 
 ul.root {
@@ -1203,4 +1246,15 @@ div.fieldWithErrors {
 	color: #aaa;
 	font-style: italic;
 	padding-left: 0.5em;
+}
+
+
+table.data tr.row0 td, table.data.zebra tr:nth-child(even) td {
+background-color: #FFF !important; 
+padding: 12px 10px;
+}
+
+table.data th{
+background-color: rgba(0, 0, 0, 0.02) !important;
+padding: 12px 10px !important;
 }
