@@ -19,6 +19,11 @@ class="story <%= story.vote == 1 ? "upvoted" : (story.vote == -1 ?
     <span class="link">
       <% if story.can_be_seen_by_user?(@user) %>
         <a href="<%= story.url_or_comments_url %>"><%= story.title %></a>
+          <% if story.markeddown_description.present? %>
+            <div class="story_text">
+              <%= raw @story.markeddown_description %>
+            </div>
+          <% end %>
       <% end %>
       <% if story.is_gone? %>
         [Story removed by <%= story.is_moderated? ? "moderator" :
