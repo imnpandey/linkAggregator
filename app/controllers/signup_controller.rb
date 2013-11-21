@@ -53,4 +53,9 @@ class SignupController < ApplicationController
       render :action => "invited"
     end
   end
+
+  def find
+    @user = User.new
+  end
+
 end

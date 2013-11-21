@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  def index
+   @users = User.all
+ end
   def show
 
     @rss_link ||= "<link rel=\"alternate\" type=\"application/rss+xml\" " <<
@@ -65,4 +68,22 @@ class UsersController < ApplicationController
   def invite
     @title = "Pass Along an Invitation"
   end
+
+  def create
+    @user = User.new(params[:user])
+    if @user.save
+      
+      session[:u] = @user.session_token
+      flash[:success] = "Welcome to #{Rails.application.name}, " <<
+        "#{@user.username}!"
+
+      Countinual.count!("#{Rails.application.shortname}.users.created", "+1")
+
+      return redirect_to "/" 
+    else
+      flash.now[:error] = "Invalid e-mail address and/or password."
+    index
+    end
+  end
+
 end

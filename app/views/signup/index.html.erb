@@ -2,7 +2,24 @@
   <div class="legend">
     Create an Account
   </div>
+  <div class="form">
+  	 <%= form_for User.new do |f| %>
 
+      <%= f.label :username %>
+      <%= f.text_field :username %><br />
+
+      <%= f.label :email %>
+      <%= f.text_field :email %><br />
+
+      <%= f.label :password %>
+      <%= f.password_field :password %><br />
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %><br />
+
+      <%= f.submit "Create my account" %>
+    <% end %>
+  </div>
   <p>
   Signup is currently by invitation only to combat spam and increase
   accountability.  If you know <a href="/u/">a current user</a> of the site,

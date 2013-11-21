@@ -2,6 +2,8 @@ Broomble::Application.routes.draw do
   root :to => "home#index",
     :protocol => (Rails.env == "development" ? "http://" : "https://")
 
+  resources :users
+  #get "/signup" => "users#new", :as => "signup"
   get "/rss" => "home#index", :format => "rss"
   get "/news(.format)" => "home#index"
 

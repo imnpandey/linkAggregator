@@ -19,8 +19,12 @@ class LoginController < ApplicationController
   end
 
   def index
+    if @user
+      return redirect_to "/"
+    else
     @title = "Login"
     render :action => "index"
+  end
   end
 
   def login
