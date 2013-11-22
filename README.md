@@ -7,15 +7,6 @@ engine.
 
 * Install Ruby 1.9.3.
 
-* Checkout the Broomble git tree from Github
-
-         $ git clone git://github.com/jcs/Broomble.git
-         $ cd Broomble
-         Broomble$ 
-
-* Run Bundler to install/bundle gems needed by the project:
-
-         Broomble$ bundle
 
 * Create a MySQL (other DBs supported by ActiveRecord may work, only MySQL and
 MariaDB have been tested) database, username, and password and put them in a
